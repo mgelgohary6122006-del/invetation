@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>دعوة زفاف — مصطفى &amp; سما</title>
+  <meta name="description" content="نتشرف بدعوتكم لحضور حفل زفاف مصطفى وسما — الجمعة 9 أكتوبر 2026">
+  <meta name="theme-color" content="#faf6ee">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="دعوة زفاف مصطفى &amp; سما">
+  <meta property="og:description" content="نتشرف بدعوتكم لحضور حفل زفاف مصطفى وسما ❤️">
+  <meta property="og:locale" content="ar_EG">
+
+  <!-- Enables scroll-reveal styles only when JavaScript is running (content stays visible without JS) -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- Arabic fonts. To work fully offline, download them into assets/fonts/ (see README). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-locked">
+
+  <!-- Reusable SVG ornaments -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- Gold divider: line - diamond - line, with small leaves -->
+      <symbol id="ornament-divider" viewBox="0 0 240 24">
+        <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+          <path d="M2 12H92M148 12H238"/>
+          <path d="M120 4l8 8-8 8-8-8z"/>
+          <path d="M104 12c-5-7-12-7-16-3 5 0 11 1 16 3zM136 12c5-7 12-7 16-3-5 0-11 1-16 3z"/>
+        </g>
+        <circle cx="120" cy="12" r="1.6" fill="currentColor"/>
+      </symbol>
+      <!-- Leaf branch (mirrored with CSS for the pair) -->
+      <symbol id="ornament-branch" viewBox="0 0 120 36">
+        <path d="M2 31 Q60 27 118 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+        <g fill="currentColor" opacity=".75">
+          <path d="M0 0C6-7 15-7 21 0 15 6 6 6 0 0z" transform="translate(16 29) rotate(-40)"/>
+          <path d="M0 0C6-7 15-7 21 0 15 6 6 6 0 0z" transform="translate(16 29) rotate(20)"/>
+          <path d="M0 0C6-7 15-7 21 0 15 6 6 6 0 0z" transform="translate(40 26) rotate(-45)"/>
+          <path d="M0 0C6-7 15-7 21 0 15 6 6 6 0 0z" transform="translate(40 26) rotate(15)"/>
+          <path d="M0 0C6-7 15-7 21 0 15 6 6 6 0 0z" transform="translate(64 22) rotate(-50)"/>
+          <path d="M0 0C6-7 15-7 21 0 15 6 6 6 0 0z" transform="translate(64 22) rotate(10)"/>
+          <path d="M0 0C6-7 15-7 21 0 15 6 6 6 0 0z" transform="translate(88 16) rotate(-55)"/>
+          <path d="M0 0C6-7 15-7 21 0 15 6 6 6 0 0z" transform="translate(88 16) rotate(5)"/>
+        </g>
+        <circle cx="116" cy="9" r="2.4" fill="currentColor"/>
+      </symbol>
+      <symbol id="icon-sound-on" viewBox="0 0 24 24">
+        <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>
+        <path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="icon-sound-off" viewBox="0 0 24 24">
+        <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>
+        <path d="M16.5 9.5l5 5M21.5 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Floating gold light particles (drawn by script.js) -->
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <!-- ===== 1. COVER / ENVELOPE ===== -->
+  <section class="cover" id="cover" aria-label="غلاف الدعوة">
+    <div class="cover__inner">
+      <p class="cover__bismillah">بسم الله الرحمن الرحيم</p>
+
+      <div class="envelope" id="envelope" aria-hidden="true">
+        <div class="env-back"></div>
+        <div class="env-card">
+          <div>
+            <p class="env-card__small">دعوة زفاف</p>
+            <p class="env-card__names"><span data-bind="groom">مصطفى</span> &amp; <span data-bind="bride">سما</span></p>
+          </div>
+        </div>
+        <svg class="env-front" viewBox="0 0 320 218" preserveAspectRatio="none">
+          <polygon points="0,0 165,122 0,218" fill="#eadcb8"/>
+          <polygon points="320,0 155,122 320,218" fill="#e3d2a6"/>
+          <polygon points="0,218 160,104 320,218" fill="#f0e4c5"/>
+          <path d="M0 218L160 104 320 218M0 0L165 122M320 0L155 122" fill="none" stroke="#b8924a" stroke-opacity=".35" stroke-width="1"/>
+        </svg>
+        <div class="env-flap"></div>
+        <div class="env-seal"><span>♡</span></div>
+      </div>
+
+      <p class="cover__to" id="coverTo" hidden></p>
+      <p class="cover__label">دعوة زفاف</p>
+      <h1 class="cover__names"><span data-bind="groom">مصطفى</span> <span class="amp">&amp;</span> <span data-bind="bride">سما</span></h1>
+      <button class="btn btn--gold" id="openBtn" type="button">افتح الدعوة</button>
+    </div>
+  </section>
+
+  <!-- Decorative page frame (visible after opening) -->
+  <div class="frame" aria-hidden="true"></div>
+
+  <!-- Music toggle -->
+  <button class="music-btn" id="musicBtn" type="button" hidden aria-pressed="false" aria-label="تشغيل الموسيقى">
+    <svg class="icon icon-off" aria-hidden="true"><use href="#icon-sound-off"/></svg>
+    <svg class="icon icon-on" aria-hidden="true"><use href="#icon-sound-on"/></svg>
+  </button>
+  <audio id="music" src="assets/music/wedding.mp3" loop preload="none"></audio>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ===== MAIN INVITATION ===== -->
+  <main class="sheet" id="invitation" hidden>
+
+    <!-- 2. PERSONAL WELCOME -->
+    <section class="sec sec--hero" aria-labelledby="welcomeTitle">
+      <svg class="branch-pair" viewBox="0 0 250 36" aria-hidden="true">
+        <use href="#ornament-branch" x="0" width="120" height="36"/>
+        <use href="#ornament-branch" width="120" height="36" transform="translate(250 0) scale(-1 1)"/>
+      </svg>
+      <p class="kicker" data-reveal>إلى ضيفنا العزيز</p>
+      <h2 class="guest mask-reveal" id="welcomeTitle" tabindex="-1"><span id="guestGreeting">أهلًا بك، ضيفنا العزيز</span></h2>
+      <p class="lead" data-reveal>يسعدنا ويشرفنا حضوركم ومشاركتنا فرحتنا</p>
+      <a class="scroll-cue" href="#couple" aria-label="انتقل إلى الأسفل"><span></span></a>
+    </section>
+
+    <!-- 3. WEDDING INTRODUCTION -->
+    <section class="sec" id="couple" aria-labelledby="coupleTitle">
+      <h2 class="sr-only" id="coupleTitle">العروسان</h2>
+      <svg class="divider" aria-hidden="true"><use href="#ornament-divider"/></svg>
+      <p class="groom-name" data-reveal data-bind="groomFull">مصطفى محمد</p>
+      <p class="heart" data-reveal aria-hidden="true">♡</p>
+      <p class="bride-name" data-reveal data-bind="brideFull">سما عبد الناصر</p>
+      <p class="lead lead--small" data-reveal>يتشرفان بدعوتكم لحضور حفل زفافهما</p>
+    </section>
+
+    <!-- 4. DATE + COUNTDOWN -->
+    <section class="sec" aria-labelledby="dateTitle">
+      <h2 class="sec__title" id="dateTitle" data-reveal>موعد الزفاف</h2>
+      <div class="date-card" data-reveal>
+        <span class="date-card__day" data-bind="weekday">الجمعة</span>
+        <span class="date-card__num" data-bind="dayNumber">9</span>
+        <span class="date-card__month"><span data-bind="month">أكتوبر</span> <span data-bind="year">2026</span></span>
+        <span class="date-card__short" data-bind="dateShort">9 / 10 / 2026</span>
+      </div>
+
+      <div class="countdown" id="countdown" role="timer" aria-label="العد التنازلي لموعد الزفاف" data-reveal>
+        <div class="cd__cell"><span class="cd__num" id="cdDays">00</span><span class="cd__label">يوم</span></div>
+        <div class="cd__cell"><span class="cd__num" id="cdHours">00</span><span class="cd__label">ساعة</span></div>
+        <div class="cd__cell"><span class="cd__num" id="cdMinutes">00</span><span class="cd__label">دقيقة</span></div>
+        <div class="cd__cell"><span class="cd__num" id="cdSeconds">00</span><span class="cd__label">ثانية</span></div>
+      </div>
+      <p class="cd__message" id="cdMessage" hidden></p>
+    </section>
+
+    <!-- 5. VENUE -->
+    <section class="sec" aria-labelledby="venueTitle">
+      <svg class="divider" aria-hidden="true"><use href="#ornament-divider"/></svg>
+      <h2 class="sec__title" id="venueTitle" data-reveal>المكان</h2>
+      <p class="venue-name" data-reveal data-bind="venueName">قاعة ليلتي</p>
+      <p class="venue-address" data-reveal data-bind="venueAddress">على الطريق السريع بكفر شكر</p>
+      <a class="btn btn--ghost" id="mapBtn" href="#" target="_blank" rel="noopener noreferrer" data-reveal>عرض الموقع على الخريطة</a>
+    </section>
+
+    <!-- 6. FAMILY -->
+    <section class="sec" aria-labelledby="familyTitle">
+      <svg class="divider" aria-hidden="true"><use href="#ornament-divider"/></svg>
+      <h2 class="sec__title" id="familyTitle" data-reveal>يتشرفون بدعوتكم</h2>
+      <ul class="family">
+        <li data-reveal>الحاج محمد سليمان عبيده</li>
+        <li data-reveal>الحاج لطفي سليمان عبيده</li>
+        <li data-reveal>الحاج يوسف سليمان عبيده</li>
+        <li data-reveal>الحاج عبد الناصر رجب غنيم</li>
+      </ul>
+    </section>
+
+    <!-- 7. WEDDING MESSAGE -->
+    <section class="sec" aria-labelledby="messageTitle">
+      <svg class="divider" aria-hidden="true"><use href="#ornament-divider"/></svg>
+      <h2 class="sr-only" id="messageTitle">رسالة الدعوة</h2>
+      <blockquote class="verse" data-reveal>
+        ﴿وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً﴾
+      </blockquote>
+      <p class="message" data-reveal>بقلوب يملؤها الفرح والسرور، ندعوكم لمشاركتنا فرحة زفاف <span data-bind="groom">مصطفى</span> و<span data-bind="bride">سما</span>، ليكون حضوركم دعاءً وبركةً لهما في بداية حياتهما.</p>
+      <p class="message" data-reveal>نسأل الله أن يبارك لهما ويبارك عليهما ويجمع بينهما في خير.</p>
+    </section>
+
+    <!-- 8. RSVP -->
+    
+
+          <p class="form-error" id="rsvpError" role="alert" hidden></p>
+          <button class="btn btn--gold btn--block" type="submit" id="rsvpSubmit">إرسال</button>
+        </form>
+        <p class="rsvp-done" id="rsvpDone" role="status" hidden></p>
+      </div>
+    </section>
+
+    <!-- 9. FINAL -->
+    <section class="sec sec--final" aria-labelledby="finalTitle">
+      <svg class="branch-pair" viewBox="0 0 250 36" aria-hidden="true">
+        <use href="#ornament-branch" x="0" width="120" height="36"/>
+        <use href="#ornament-branch" width="120" height="36" transform="translate(250 0) scale(-1 1)"/>
+      </svg>
+      <h2 class="final-line" id="finalTitle" data-reveal>وجودكم يسعدنا ويكمل فرحتنا</h2>
+      <p class="final-names" data-reveal><span data-bind="groom">مصطفى</span> <span class="amp">&amp;</span> <span data-bind="bride">سما</span></p>
+      <span class="final-rule" aria-hidden="true"></span>
+      <button class="btn btn--ghost" id="shareBtn" type="button" data-reveal>مشاركة الدعوة</button>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

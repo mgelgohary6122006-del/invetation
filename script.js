@@ -149,7 +149,7 @@
       window.scrollTo(0, 0);
       cover.classList.add('is-hidden');
        // تمرير تلقائي سلس ومتوافق مع الموبايل
-      const scrollSpeed = 30; 
+      const scrollSpeed = 150; 
       let isAutoScrolling = true;
 
       function smoothAutoScroll() {

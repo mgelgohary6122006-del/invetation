@@ -183,14 +183,15 @@ body.is-open .frame { opacity: 1; }
 
 /* ---------- 5b. Floral corners & ornaments ---------- */
 .corner {
-  position: absolute; width: clamp(100px, 32vw, 140px); height: auto; aspect-ratio: 1;
-  color: var(--gold); opacity: .9; pointer-events: none; z-index: 0;
+  position: absolute; width: clamp(56px, 16vw, 72px); height: auto; aspect-ratio: 1;
+  color: var(--gold); opacity: .6; pointer-events: none; z-index: 0;
 }
 .corner--tl { top: 0; left: 0; }
 .corner--tr { top: 0; right: 0; transform: scaleX(-1); }
 .corner--bl { bottom: 0; left: 0; transform: scaleY(-1); }
 .corner--br { bottom: 0; right: 0; transform: scale(-1, -1); }
-.cover .corner { width: clamp(110px, 34vw, 160px); }
+.cover .corner { width: clamp(56px, 16vw, 72px); }
+@media (min-width: 620px) { .corner, .cover .corner { width: 100px; } }
 
 .card-flower {
   position: absolute; top: -17px; left: 50%; width: 34px; height: 34px; margin-left: -17px;

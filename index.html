@@ -129,6 +129,12 @@
   </button>
   <audio id="music" src="assets/music/wedding.mp3" loop preload="none"></audio>
 
+  <!-- Auto-scroll toggle -->
+  <button class="auto-btn" id="autoScrollBtn" type="button" hidden aria-pressed="false" aria-label="تشغيل التمرير التلقائي">
+    <svg class="icon icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8l6 6 6-6M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <svg class="icon icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+  </button>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <!-- ===== MAIN INVITATION ===== -->
@@ -192,8 +198,10 @@
       <svg class="divider" aria-hidden="true"><use href="#ornament-star"/></svg>
       <h2 class="sec__title" id="familyTitle" data-reveal>يتشرف بدعوتكم</h2>
       <ul class="family">
-        <li data-reveal>الحاج/ عبد الناصر رجب غنيم</li>
+         <li data-reveal>الحاج/ عبد الناصر رجب غنيم</li>
         <li data-reveal>أسرة المرحوم/ محمد سليمان عبده</li>
+     
+       
       </ul>
     </section>
 
@@ -209,8 +217,7 @@
     </section>
 
     <!-- 8. RSVP -->
-   
-
+    
     <!-- 9. FINAL -->
     <section class="sec sec--final" aria-labelledby="finalTitle">
       <svg class="corner corner--bl" viewBox="0 0 140 140" aria-hidden="true"><use href="#corner-floral"/></svg><svg class="corner corner--br" viewBox="0 0 140 140" aria-hidden="true"><use href="#corner-floral"/></svg>

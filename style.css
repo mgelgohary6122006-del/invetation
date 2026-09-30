@@ -181,6 +181,28 @@ body.is-open .frame { opacity: 1; }
 }
 .toast.is-shown { opacity: 1; transform: translate(-50%, 0); }
 
+/* Auto-scroll toggle (bottom-right; music button is bottom-left) */
+.auto-btn {
+  position: fixed; z-index: 40; right: 18px; bottom: calc(18px + var(--safe-bottom));
+  width: 46px; height: 46px; border-radius: 50%; padding: 0;
+  display: grid; place-items: center; cursor: pointer;
+  background: var(--paper); color: var(--gold-deep);
+  border: 1px solid var(--line); box-shadow: 0 4px 14px rgba(74, 54, 20, .15);
+  -webkit-tap-highlight-color: transparent;
+}
+.auto-btn[hidden] { display: none; }
+.auto-btn .icon { width: 24px; height: 24px; }
+.auto-btn .icon-pause { display: none; }
+.auto-btn[aria-pressed="true"] { background: var(--gold-deep); color: var(--paper); }
+.auto-btn[aria-pressed="true"] .icon-pause { display: block; }
+.auto-btn[aria-pressed="true"] .icon-play { display: none; }
+
+/* While auto-scrolling: native smooth-scroll off (prevents lag) and idle animations rest */
+html.is-autoscrolling { scroll-behavior: auto; }
+html.is-autoscrolling #particles { visibility: hidden; }
+html.is-autoscrolling .scroll-cue span,
+html.is-autoscrolling .sec--final .final-names .amp { animation: none; }
+
 /* ---------- 5b. Floral corners & ornaments ---------- */
 .corner {
   position: absolute; width: clamp(56px, 16vw, 72px); height: auto; aspect-ratio: 1;

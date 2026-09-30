@@ -8,6 +8,7 @@
      4. Envelope opening
      5. Countdown
      6. Scroll reveal
+     6b. Auto-scroll (stops on touch)
      7. Music
      8. WhatsApp share
      9. RSVP (with pluggable channels)
@@ -47,6 +48,13 @@
       endpoint: ''
     },
 
+    // Automatic slow scrolling. Stops the moment the guest touches the screen.
+    autoScroll: {
+      startOnOpen: true,   // begin by itself after the invitation opens
+      delay: 600,          // milliseconds to wait after the invitation appears (0 = immediately)
+      speed: 100            // pixels per second (lower = slower)
+    },
+
     // Guest names longer than this are cut off
     maxNameLength: 40
   };
@@ -56,6 +64,7 @@
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const pad = (n) => String(n).padStart(2, '0');
+  let autoScrolling = false; // read by the particles loop so it can rest while scrolling
 
   const toastEl = $('#toast');
   let toastTimer;
@@ -144,19 +153,15 @@
     setTimeout(() => {
       invitation.hidden = false;
       musicBtn.hidden = false;
+      autoScroll.button.hidden = false;
       document.body.classList.remove('is-locked');
       document.body.classList.add('is-open');
       window.scrollTo(0, 0);
       cover.classList.add('is-hidden');
-      // متغير لتخزين التمرير التلقائي
-let autoScrollTimer = setInterval(() => { window.scrollBy(0,4); }, 12);
-
-// إيقاف التمرير عند لمس الشاشة أو تحريك عجلة الماوس
-const stopAutoScroll = () => clearInterval(autoScrollTimer);
-
-window.addEventListener('touchstart', stopAutoScroll, { passive: true });
-window.addEventListener('wheel', stopAutoScroll, { passive: true });
       startScrollReveal();
+      if (CONFIG.autoScroll.startOnOpen && !reducedMotion) {
+        setTimeout(() => autoScroll.startIfIdle(), CONFIG.autoScroll.delay);
+      }
       setTimeout(() => {
         cover.hidden = true;
         const heading = $('#welcomeTitle');
@@ -226,6 +231,89 @@ window.addEventListener('wheel', stopAutoScroll, { passive: true });
     }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
     targets.forEach((el) => io.observe(el));
   }
+
+  /* ---------- 6b. Auto-scroll (stops on touch) ----------
+     Why this stays smooth on phones:
+     - one requestAnimationFrame loop, speed based on real elapsed time (not frames)
+     - CSS smooth-scrolling is switched off while running (it would fight every frame)
+     - the gold particles rest while scrolling, leaving the GPU free
+     - position is tracked as a decimal, so slow speeds don't get rounded to zero */
+  const autoScroll = (() => {
+    const btn = $('#autoScrollBtn');
+    const root = document.documentElement;
+    let running = false, raf = 0, last = 0, pos = 0, lastSet = 0, touchedBeforeStart = false;
+
+    const maxY = () => root.scrollHeight - window.innerHeight;
+
+    function setUI(on) {
+      btn.setAttribute('aria-pressed', String(on));
+      btn.setAttribute('aria-label', on ? 'إيقاف التمرير التلقائي' : 'تشغيل التمرير التلقائي');
+    }
+
+    function step(now) {
+      if (!running) return;
+      // The page moved by something other than us (finger, keyboard, scrollbar): give control back
+      if (Math.abs(window.scrollY - lastSet) > 2) { stop(); return; }
+
+      const dt = Math.min(now - last, 50); // clamp so a hiccup never causes a jump
+      last = now;
+      pos += (CONFIG.autoScroll.speed * dt) / 1000;
+
+      if (pos >= maxY()) {
+        window.scrollTo(0, maxY());
+        stop();
+        return;
+      }
+      lastSet = pos;
+      window.scrollTo(0, pos);
+      raf = requestAnimationFrame(step);
+    }
+
+    function start() {
+      if (running || maxY() <= 0) return;
+      running = autoScrolling = true;
+      root.classList.add('is-autoscrolling');
+      pos = lastSet = window.scrollY;
+      last = performance.now();
+      setUI(true);
+      raf = requestAnimationFrame(step);
+    }
+
+    function stop() {
+      if (!running) return;
+      running = autoScrolling = false;
+      cancelAnimationFrame(raf);
+      root.classList.remove('is-autoscrolling');
+      setUI(false);
+    }
+
+    // Used for the automatic start: skipped if the guest already took control
+    function startIfIdle() {
+      if (!touchedBeforeStart) start();
+    }
+
+    // Any touch / wheel / key press / focus on a field hands control back to the guest
+    // (The tap on the "open" button itself must NOT count, so we only listen once opened.)
+    function takeControl() {
+      if (running) stop();
+      else if (opened) touchedBeforeStart = true; // guest touched during the short delay: don't auto-start
+    }
+    const interrupt = (e) => { if (!btn.contains(e.target)) takeControl(); };
+    window.addEventListener('touchstart', interrupt, { passive: true });
+    window.addEventListener('wheel', interrupt, { passive: true });
+    window.addEventListener('mousedown', interrupt, { passive: true });
+    window.addEventListener('keydown', (e) => {
+      if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(e.key)) takeControl();
+    });
+    document.addEventListener('focusin', (e) => {
+      if (e.target.matches('input, select, textarea')) stop();
+    });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+
+    btn.addEventListener('click', () => (running ? stop() : (touchedBeforeStart = false, start())));
+
+    return { start, stop, startIfIdle, button: btn };
+  })();
 
   /* ---------- 7. Music (manual start only) ---------- */
   const audio = $('#music');
@@ -390,7 +478,7 @@ window.addEventListener('wheel', stopAutoScroll, { passive: true });
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     let w = 0, h = 0, particles = [], raf = 0;
 
     function resize() {
@@ -414,6 +502,7 @@ window.addEventListener('wheel', stopAutoScroll, { passive: true });
     }
 
     function frame() {
+      if (autoScrolling) { raf = requestAnimationFrame(frame); return; } // rest while auto-scrolling
       ctx.clearRect(0, 0, w, h);
       for (const p of particles) {
         p.y -= p.vy; p.x += p.drift; p.phase += p.speed;

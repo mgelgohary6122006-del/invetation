@@ -148,14 +148,32 @@
       document.body.classList.add('is-open');
       window.scrollTo(0, 0);
       cover.classList.add('is-hidden');
+       // تمرير تلقائي سلس ومتوافق مع الموبايل
+      const scrollSpeed = 1.5; 
+      let isAutoScrolling = true;
+
+      function smoothAutoScroll() {
+        if (!isAutoScrolling) return;
+        
+        if ((window.innerHeight + window.scrollY) < document.body.offsetHeight) {
+          window.scrollBy(0, scrollSpeed);
+          requestAnimationFrame(smoothAutoScroll);
+        }
+      }
+
+      setTimeout(() => {
+        requestAnimationFrame(smoothAutoScroll);
+      }, 500);
+
+      const stopAutoScroll = () => {
+        isAutoScrolling = false;
+      };
+
+      window.addEventListener('touchstart', stopAutoScroll, { passive: true });
+      window.addEventListener('wheel', stopAutoScroll, { passive: true });
+      window.addEventListener('mousedown', stopAutoScroll, { passive: true });
       // متغير لتخزين التمرير التلقائي
-let autoScrollTimer = setInterval(() => { window.scrollBy(0,4); }, 12);
 
-// إيقاف التمرير عند لمس الشاشة أو تحريك عجلة الماوس
-const stopAutoScroll = () => clearInterval(autoScrollTimer);
-
-window.addEventListener('touchstart', stopAutoScroll, { passive: true });
-window.addEventListener('wheel', stopAutoScroll, { passive: true });
       startScrollReveal();
       setTimeout(() => {
         cover.hidden = true;

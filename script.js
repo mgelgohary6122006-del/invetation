@@ -148,11 +148,14 @@
       document.body.classList.add('is-open');
       window.scrollTo(0, 0);
       cover.classList.add('is-hidden');
-       // تمرير تلقائي سلس ومتوافق مع الموبايل
-
-       
       // متغير لتخزين التمرير التلقائي
+let autoScrollTimer = setInterval(() => { window.scrollBy(0,4); }, 12);
 
+// إيقاف التمرير عند لمس الشاشة أو تحريك عجلة الماوس
+const stopAutoScroll = () => clearInterval(autoScrollTimer);
+
+window.addEventListener('touchstart', stopAutoScroll, { passive: true });
+window.addEventListener('wheel', stopAutoScroll, { passive: true });
       startScrollReveal();
       setTimeout(() => {
         cover.hidden = true;

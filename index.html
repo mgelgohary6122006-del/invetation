@@ -25,14 +25,39 @@
   <!-- Reusable SVG ornaments -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs>
-      <!-- Gold divider: line - diamond - line, with small leaves -->
-      <symbol id="ornament-divider" viewBox="0 0 240 24">
+      <!-- Five-petal flower -->
+      <symbol id="flower" viewBox="-24 -24 48 48">
+        <g stroke="currentColor" stroke-width="1" fill="currentColor" fill-opacity=".14" stroke-linejoin="round" vector-effect="non-scaling-stroke"><path d="M0 0C-9-7-9-20 0-22 9-20 9-7 0 0z" transform="rotate(0)"/><path d="M0 0C-9-7-9-20 0-22 9-20 9-7 0 0z" transform="rotate(72)"/><path d="M0 0C-9-7-9-20 0-22 9-20 9-7 0 0z" transform="rotate(144)"/><path d="M0 0C-9-7-9-20 0-22 9-20 9-7 0 0z" transform="rotate(216)"/><path d="M0 0C-9-7-9-20 0-22 9-20 9-7 0 0z" transform="rotate(288)"/><path d="M0 0C-5-4-5-11 0-12 5-11 5-4 0 0z" transform="rotate(36)" fill-opacity=".3"/><path d="M0 0C-5-4-5-11 0-12 5-11 5-4 0 0z" transform="rotate(108)" fill-opacity=".3"/><path d="M0 0C-5-4-5-11 0-12 5-11 5-4 0 0z" transform="rotate(180)" fill-opacity=".3"/><path d="M0 0C-5-4-5-11 0-12 5-11 5-4 0 0z" transform="rotate(252)" fill-opacity=".3"/><path d="M0 0C-5-4-5-11 0-12 5-11 5-4 0 0z" transform="rotate(324)" fill-opacity=".3"/></g>
+        <circle r="2.4" fill="currentColor"/>
+      </symbol>
+      <!-- Divider A: flower with leaves -->
+      <symbol id="ornament-divider" viewBox="0 0 240 28">
         <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
-          <path d="M2 12H92M148 12H238"/>
-          <path d="M120 4l8 8-8 8-8-8z"/>
-          <path d="M104 12c-5-7-12-7-16-3 5 0 11 1 16 3zM136 12c5-7 12-7 16-3-5 0-11 1-16 3z"/>
+          <path d="M2 14H80M160 14H238"/>
+          <path d="M98 14c-6-8-14-8-18-3 6 0 12 0 18 3zM142 14c6-8 14-8 18-3-6 0-12 0-18 3z"/>
         </g>
-        <circle cx="120" cy="12" r="1.6" fill="currentColor"/>
+        <circle cx="74" cy="14" r="1.6" fill="currentColor"/><circle cx="166" cy="14" r="1.6" fill="currentColor"/>
+        <use href="#flower" x="106" y="2" width="28" height="28"/>
+      </symbol>
+      <!-- Divider B: eight-point star with diamonds -->
+      <symbol id="ornament-star" viewBox="0 0 240 28">
+        <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+          <path d="M2 14H86M154 14H238"/>
+          <rect x="113" y="7" width="14" height="14"/>
+          <rect x="113" y="7" width="14" height="14" transform="rotate(45 120 14)"/>
+          <path d="M94 14l4-4 4 4-4 4zM138 14l4-4 4 4-4 4z"/>
+        </g>
+        <circle cx="120" cy="14" r="2" fill="currentColor"/>
+      </symbol>
+      <!-- Floral vine that wraps a page corner (mirrored with CSS) -->
+      <symbol id="corner-floral" viewBox="0 0 140 140">
+        <path d="M4 136C10 80 40 30 136 6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <g fill="currentColor" fill-opacity=".7"><path d="M0 0C6-7 15-7 21 0 15 6 6 6 0 0z" transform="translate(6.6 119.3) rotate(-130) scale(1.1)"/><path d="M0 0C6-7 15-7 21 0 15 6 6 6 0 0z" transform="translate(6.6 119.3) rotate(-40) scale(1.1)"/><path d="M0 0C6-7 15-7 21 0 15 6 6 6 0 0z" transform="translate(57.6 39.9) rotate(-80) scale(1.1)"/><path d="M0 0C6-7 15-7 21 0 15 6 6 6 0 0z" transform="translate(57.6 39.9) rotate(10) scale(1.1)"/><path d="M0 0C6-7 15-7 21 0 15 6 6 6 0 0z" transform="translate(109 14) rotate(-57) scale(1.1)"/><path d="M0 0C6-7 15-7 21 0 15 6 6 6 0 0z" transform="translate(109 14) rotate(33) scale(1.1)"/><path d="M0 0C6-7 15-7 21 0 15 6 6 6 0 0z" transform="translate(25 74) rotate(-30) scale(1.1)"/></g>
+        <use href="#flower" x="14" y="37" width="44" height="44"/>
+        <use href="#flower" x="2" y="84" width="24" height="24"/>
+        <use href="#flower" x="63" y="15" width="26" height="26"/>
+        <circle cx="136" cy="6" r="2.4" fill="currentColor"/><circle cx="4" cy="136" r="2.4" fill="currentColor"/>
+        <circle cx="46" cy="22" r="1.6" fill="currentColor"/><circle cx="24" cy="112" r="1.6" fill="currentColor"/>
       </symbol>
       <!-- Leaf branch (mirrored with CSS for the pair) -->
       <symbol id="ornament-branch" viewBox="0 0 120 36">
@@ -65,6 +90,7 @@
 
   <!-- ===== 1. COVER / ENVELOPE ===== -->
   <section class="cover" id="cover" aria-label="غلاف الدعوة">
+    <svg class="corner corner--tl" viewBox="0 0 140 140" aria-hidden="true"><use href="#corner-floral"/></svg><svg class="corner corner--tr" viewBox="0 0 140 140" aria-hidden="true"><use href="#corner-floral"/></svg><svg class="corner corner--bl" viewBox="0 0 140 140" aria-hidden="true"><use href="#corner-floral"/></svg><svg class="corner corner--br" viewBox="0 0 140 140" aria-hidden="true"><use href="#corner-floral"/></svg>
     <div class="cover__inner">
       <p class="cover__bismillah">بسم الله الرحمن الرحيم</p>
 
@@ -110,6 +136,7 @@
 
     <!-- 2. PERSONAL WELCOME -->
     <section class="sec sec--hero" aria-labelledby="welcomeTitle">
+      <svg class="corner corner--tl" viewBox="0 0 140 140" aria-hidden="true"><use href="#corner-floral"/></svg><svg class="corner corner--tr" viewBox="0 0 140 140" aria-hidden="true"><use href="#corner-floral"/></svg>
       <svg class="branch-pair" viewBox="0 0 250 36" aria-hidden="true">
         <use href="#ornament-branch" x="0" width="120" height="36"/>
         <use href="#ornament-branch" width="120" height="36" transform="translate(250 0) scale(-1 1)"/>
@@ -132,8 +159,10 @@
 
     <!-- 4. DATE + COUNTDOWN -->
     <section class="sec" aria-labelledby="dateTitle">
+      <svg class="divider" aria-hidden="true"><use href="#ornament-star"/></svg>
       <h2 class="sec__title" id="dateTitle" data-reveal>موعد الزفاف</h2>
       <div class="date-card" data-reveal>
+        <svg class="card-flower" aria-hidden="true"><use href="#flower"/></svg>
         <span class="date-card__day" data-bind="weekday">الجمعة</span>
         <span class="date-card__num" data-bind="dayNumber">9</span>
         <span class="date-card__month"><span data-bind="month">أكتوبر</span> <span data-bind="year">2026</span></span>
@@ -160,13 +189,11 @@
 
     <!-- 6. FAMILY -->
     <section class="sec" aria-labelledby="familyTitle">
-      <svg class="divider" aria-hidden="true"><use href="#ornament-divider"/></svg>
-      <h2 class="sec__title" id="familyTitle" data-reveal>يتشرفون بدعوتكم</h2>
+      <svg class="divider" aria-hidden="true"><use href="#ornament-star"/></svg>
+      <h2 class="sec__title" id="familyTitle" data-reveal>يتشرف بدعوتكم</h2>
       <ul class="family">
-        <li data-reveal>الحاج محمد سليمان عبيده</li>
-        <li data-reveal>الحاج لطفي سليمان عبيده</li>
-        <li data-reveal>الحاج يوسف سليمان عبيده</li>
-        <li data-reveal>الحاج عبد الناصر رجب غنيم</li>
+        <li data-reveal>الحاج/ عبد الناصر رجب غنيم</li>
+        <li data-reveal>أسرة المرحوم/ محمد سليمان عبده</li>
       </ul>
     </section>
 
@@ -182,17 +209,11 @@
     </section>
 
     <!-- 8. RSVP -->
-    
-
-          <p class="form-error" id="rsvpError" role="alert" hidden></p>
-          <button class="btn btn--gold btn--block" type="submit" id="rsvpSubmit">إرسال</button>
-        </form>
-        <p class="rsvp-done" id="rsvpDone" role="status" hidden></p>
-      </div>
-    </section>
+   
 
     <!-- 9. FINAL -->
     <section class="sec sec--final" aria-labelledby="finalTitle">
+      <svg class="corner corner--bl" viewBox="0 0 140 140" aria-hidden="true"><use href="#corner-floral"/></svg><svg class="corner corner--br" viewBox="0 0 140 140" aria-hidden="true"><use href="#corner-floral"/></svg>
       <svg class="branch-pair" viewBox="0 0 250 36" aria-hidden="true">
         <use href="#ornament-branch" x="0" width="120" height="36"/>
         <use href="#ornament-branch" width="120" height="36" transform="translate(250 0) scale(-1 1)"/>
